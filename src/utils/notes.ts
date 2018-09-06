@@ -125,5 +125,7 @@ export const chromaticScaleWithRoot = (note: Note): NoteType[] => {
 export const scaleFilter = (scalePositions: number[]) => (
   chromaticScale: NoteType[]
 ) => {
-  return chromaticScale.filter((n, i) => scalePositions.includes(i));
+  return chromaticScale
+    .map((n, i) => ({ ...n, distanceFromRoot: i }))
+    .filter(n => scalePositions.includes(n.distanceFromRoot));
 };
