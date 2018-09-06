@@ -43,7 +43,7 @@ export const notes: NoteType[] = [
   },
   {
     type: "non-natural",
-    sharpLabel: "C#",
+    sharpLabel: "C♯",
     sharpNote: Note.Csharp,
     flatLabel: "D♭",
     flatNote: Note.Dflat
@@ -55,7 +55,7 @@ export const notes: NoteType[] = [
   },
   {
     type: "non-natural",
-    sharpLabel: "D#",
+    sharpLabel: "D♯",
     sharpNote: Note.Dsharp,
     flatLabel: "E♭",
     flatNote: Note.Eflat
@@ -72,7 +72,7 @@ export const notes: NoteType[] = [
   },
   {
     type: "non-natural",
-    sharpLabel: "F#",
+    sharpLabel: "F♯",
     sharpNote: Note.Fsharp,
     flatLabel: "G♭",
     flatNote: Note.Gflat
@@ -84,7 +84,7 @@ export const notes: NoteType[] = [
   },
   {
     type: "non-natural",
-    sharpLabel: "G#",
+    sharpLabel: "G♯",
     sharpNote: Note.Gsharp,
     flatLabel: "A♭",
     flatNote: Note.Aflat
@@ -96,7 +96,7 @@ export const notes: NoteType[] = [
   },
   {
     type: "non-natural",
-    sharpLabel: "A#",
+    sharpLabel: "A♯",
     sharpNote: Note.Asharp,
     flatLabel: "B♭",
     flatNote: Note.Bflat
