@@ -1,99 +1,110 @@
-export type Note = NaturalNote | ChromaticNote;
+export type NoteType = NaturalNote | NonNaturalNote;
 
 interface NaturalNote {
   type: "natural";
-  note: Notes;
+  note: Note;
   label: string;
 }
 
-interface ChromaticNote {
-  type: "chromatic";
-  sharpNote: Notes;
+interface NonNaturalNote {
+  type: "non-natural";
+  sharpNote: Note;
   sharpLabel: string;
-  flatNote: Notes;
+  flatNote: Note;
   flatLabel: string;
 }
 
-export enum Notes {
+export enum Note {
   A,
+  Aflat,
+  Asharp,
   B,
+  Bflat,
   C,
+  Csharp,
   D,
+  Dflat,
+  Dsharp,
   E,
+  Eflat,
   F,
-  G
+  Fsharp,
+  Fflat,
+  G,
+  Gsharp,
+  Gflat
 }
 
-export const notes: Note[] = [
+export const notes: NoteType[] = [
   {
     type: "natural",
     label: "C",
-    note: Notes.C
+    note: Note.C
   },
   {
-    type: "chromatic",
+    type: "non-natural",
     sharpLabel: "C#",
-    sharpNote: Notes.C,
+    sharpNote: Note.Csharp,
     flatLabel: "D♭",
-    flatNote: Notes.D
+    flatNote: Note.Dflat
   },
   {
     type: "natural",
     label: "D",
-    note: Notes.D
+    note: Note.D
   },
   {
-    type: "chromatic",
+    type: "non-natural",
     sharpLabel: "D#",
-    sharpNote: Notes.D,
+    sharpNote: Note.Dsharp,
     flatLabel: "E♭",
-    flatNote: Notes.E
+    flatNote: Note.Eflat
   },
   {
     type: "natural",
     label: "E",
-    note: Notes.E
+    note: Note.E
   },
   {
     type: "natural",
     label: "F",
-    note: Notes.F
+    note: Note.F
   },
   {
-    type: "chromatic",
+    type: "non-natural",
     sharpLabel: "F#",
-    sharpNote: Notes.F,
+    sharpNote: Note.Fsharp,
     flatLabel: "G♭",
-    flatNote: Notes.G
+    flatNote: Note.Gflat
   },
   {
     type: "natural",
     label: "G",
-    note: Notes.G
+    note: Note.G
   },
   {
-    type: "chromatic",
+    type: "non-natural",
     sharpLabel: "G#",
-    sharpNote: Notes.G,
+    sharpNote: Note.Gsharp,
     flatLabel: "A♭",
-    flatNote: Notes.A
+    flatNote: Note.Aflat
   },
   {
     type: "natural",
     label: "A",
-    note: Notes.A
+    note: Note.A
   },
   {
-    type: "chromatic",
+    type: "non-natural",
     sharpLabel: "A#",
-    sharpNote: Notes.A,
+    sharpNote: Note.Asharp,
     flatLabel: "B♭",
-    flatNote: Notes.B
+    flatNote: Note.Bflat
   },
   {
     type: "natural",
     label: "B",
-    note: Notes.B
+    note: Note.B
   }
 ];
 
@@ -101,4 +112,18 @@ export const offsetBy = (num: number) => {
   const adjusted = num % 12;
   const [back, front] = [notes.slice(0, adjusted), notes.slice(adjusted)];
   return [...front, ...back];
+};
+
+const matchesNote = (note: Note) => (n: NoteType): boolean =>
+  (n.type === "natural" && n.note === note) ||
+  (n.type === "non-natural" && (n.sharpNote === note || n.flatNote === note));
+
+export const chromaticScaleWithRoot = (note: Note): NoteType[] => {
+  return offsetBy(notes.findIndex(matchesNote(note)));
+};
+
+export const scaleFilter = (scalePositions: number[]) => (
+  chromaticScale: NoteType[]
+) => {
+  return chromaticScale.filter((n, i) => scalePositions.includes(i));
 };
