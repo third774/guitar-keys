@@ -12,9 +12,3 @@ export const locrianNotePositions = [0, 1, 3, 5, 6, 8, 10];
 
 export const generateScale = (rootNote: Note, scale: Scale) =>
   scaleFilter(scale)(chromaticScaleWithRoot(rootNote));
-
-export const generateMajorScale = (note: Note) =>
-  generateScale(note, majorNotePositions);
-
-export const generateMinorScale = (note: Note) =>
-  generateScale(note, minorNotePositions);
