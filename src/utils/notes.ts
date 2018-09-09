@@ -1,3 +1,5 @@
+import { shiftToBack } from "utils/shiftToBack";
+
 export type NoteType = NaturalNote | NonNaturalNote;
 
 interface NaturalNote {
@@ -122,30 +124,28 @@ export const chromaticScaleWithRootC: NoteType[] = [
   }
 ];
 
-export const offsetBy = (num: number) => {
-  const adjusted = num % 12;
-  const [back, front] = [
-    chromaticScaleWithRootC.slice(0, adjusted),
-    chromaticScaleWithRootC.slice(adjusted)
-  ];
-  return [...front, ...back];
-};
+export const findIndexOfNote = (note: Note, notes: NoteType[]) =>
+  notes.findIndex(
+    n =>
+      (n.type === "natural" && n.note === note) ||
+      (n.type === "non-natural" &&
+        (n.sharpNote === note || n.flatNote === note))
+  );
 
 export const chromaticScaleWithRoot = (note: Note): NoteType[] => {
-  return offsetBy(
-    chromaticScaleWithRootC.findIndex(
-      n =>
-        (n.type === "natural" && n.note === note) ||
-        (n.type === "non-natural" &&
-          (n.sharpNote === note || n.flatNote === note))
-    )
+  return shiftToBack(
+    findIndexOfNote(note, chromaticScaleWithRootC),
+    chromaticScaleWithRootC
   );
 };
 
 export const scaleFilter = (scalePositions: number[]) => (
   chromaticScale: NoteType[]
 ) => {
-  return chromaticScale
-    .map((n, i) => ({ ...n, distanceFromRoot: i }))
-    .filter(n => scalePositions.includes(n.distanceFromRoot));
+  return chromaticScale.map((n, i) => ({
+    ...n,
+    distanceFromRoot: i,
+    inKey: scalePositions.includes(i)
+  }));
+  // .filter(n => n.inKey);
 };
