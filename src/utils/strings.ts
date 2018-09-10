@@ -1,5 +1,5 @@
-import { Note, NoteType, findIndexOfNote } from "./notes";
-import { shiftToBack } from "./shiftToBack";
+import {Note, NoteType, findIndexOfNote} from "./notes";
+import {shiftToBack} from "./shiftToBack";
 
 export const stringInKeyGenerator = (keyNotes: NoteType[]) => (
   stringRootNote: Note
