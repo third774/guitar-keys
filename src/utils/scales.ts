@@ -52,5 +52,7 @@ export const scales: {[k in ScaleType]: Scale} = {
   }
 };
 
-export const generateScale = (rootNote: Note, scale: ScalePositions) =>
-  normalizeNotes(scaleFilter(scale)(chromaticScaleWithRoot(rootNote)));
+export const generateScale = (rootNote: Note, scale: Scale) =>
+  normalizeNotes(
+    scaleFilter(scale.positions)(chromaticScaleWithRoot(rootNote))
+  );

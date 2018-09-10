@@ -2,36 +2,27 @@ import React from "react";
 import styled from "styled-components";
 import {NormalizedNote, Note} from "utils/notes";
 import {shiftToBack} from "utils/shiftToBack";
+import {FretNote} from "./FretNote";
 
 const Container = styled.div`
   display: flex;
-  /* justify-content: space-between; */
 `;
 
-const Fret = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-grow: 1;
-  flex-basis: 0;
-  border: 1px solid black;
-`;
-
-interface NoteProps {
-  inKey: boolean;
+interface FretProps {
+  distanceFromRoot: number;
 }
 
-const FretNote = styled.span`
+const Fret = styled.div<FretProps>`
   display: flex;
-  justify-content: center;
+  justify-content: ${props =>
+    props.distanceFromRoot > 0 ? "center" : "flex-end"};
   align-items: center;
-  background-color: ${(props: NoteProps) => (props.inKey ? "black" : "white")};
-  color: ${(props: NoteProps) => (props.inKey ? "white" : "black")};
-  border-radius: 50%;
-  padding: 6px;
-  margin: 16px;
-  height: 32px;
-  width: 32px;
+  flex-grow: ${props => (props.distanceFromRoot > 0 ? 1 : 0)};
+  flex-basis: 80px;
+  flex-shrink: 0;
+  border: ${props => (props.distanceFromRoot > 0 ? "1px solid black" : "none")};
+  border-right: ${props =>
+    props.distanceFromRoot > 0 ? "1px solid black" : "8px solid black"};
 `;
 
 interface GuitarStringProps {
@@ -42,12 +33,16 @@ interface GuitarStringProps {
 export const GuitarString: React.SFC<GuitarStringProps> = ({
   notes,
   rootNote
-}) => (
-  <Container>
-    {shiftToBack(notes.findIndex(n => n.note === rootNote), notes).map(n => (
-      <Fret key={n.note}>
-        {n.inKey && <FretNote inKey={n.inKey}>{n.label}</FretNote>}
-      </Fret>
-    ))}
-  </Container>
-);
+}) => {
+  return (
+    <Container>
+      {shiftToBack(notes.findIndex(n => n.note === rootNote), notes).map(
+        (n, i) => (
+          <Fret key={n.note} distanceFromRoot={i}>
+            {n.inKey && <FretNote inKey={n.inKey}>{n.label}</FretNote>}
+          </Fret>
+        )
+      )}
+    </Container>
+  );
+};
