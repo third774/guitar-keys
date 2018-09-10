@@ -1,11 +1,18 @@
 import * as React from "react";
-import {RootNoteDropdown} from "components/RootNoteDropdown";
+import styled from "styled-components";
 
-import "./App.css";
-import {Note} from "utils/notes";
-import {scales, generateScale} from "utils/scales";
+import {RootNoteDropdown} from "components/RootNoteDropdown";
 import {ModeDropdown} from "components/ModeDropdown";
 import {FretBoard} from "components/FretBoard";
+import {Tuning} from "components/Tuning";
+import {scales, generateScale} from "utils/scales";
+import {Note} from "utils/notes";
+
+import "./App.css";
+
+const DisplayContainer = styled.div`
+  display: flex;
+`;
 
 class App extends React.Component {
   state = {
@@ -16,6 +23,7 @@ class App extends React.Component {
 
   handleRootChange = (rootNote: string) => this.setState({rootNote});
   handleModeChange = (mode: string) => this.setState({mode});
+  handleTuningChange = (tuning: Note[]) => this.setState({tuning});
 
   public render() {
     const {rootNote, mode, tuning} = this.state;
@@ -25,7 +33,10 @@ class App extends React.Component {
         <h1>Guitar Key Explorer</h1>
         <RootNoteDropdown value={rootNote} onChange={this.handleRootChange} />
         <ModeDropdown value={mode} onChange={this.handleModeChange} />
-        <FretBoard tuning={tuning} scale={scale} />
+        <DisplayContainer>
+          <Tuning tuning={tuning} onChange={this.handleTuningChange} />
+          <FretBoard tuning={tuning} scale={scale} />
+        </DisplayContainer>
       </div>
     );
   }

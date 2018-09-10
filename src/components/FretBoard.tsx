@@ -1,4 +1,5 @@
 import React from "react";
+import styled from "styled-components";
 import {Note, NormalizedNote} from "utils/notes";
 import {GuitarString} from "components/GuitarString";
 
@@ -7,10 +8,14 @@ interface FretBoardProps {
   scale: NormalizedNote[];
 }
 
+const FretBoardContainer = styled.div`
+  flex-grow: 1;
+`;
+
 export const FretBoard: React.SFC<FretBoardProps> = ({tuning, scale}) => (
-  <div>
+  <FretBoardContainer>
     {tuning.map((openNote, i) => (
       <GuitarString key={i} notes={scale} rootNote={openNote} />
     ))}
-  </div>
+  </FretBoardContainer>
 );
