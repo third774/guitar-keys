@@ -1,3 +1,5 @@
+import memoize from "lodash/memoize";
+
 import {
   scaleFilter,
   chromaticScaleWithRoot,
@@ -52,7 +54,14 @@ export const scales: {[k in ScaleType]: Scale} = {
   }
 };
 
-export const generateScale = (rootNote: Note, scale: Scale) =>
-  normalizeNotes(
-    scaleFilter(scale.positions)(chromaticScaleWithRoot(rootNote))
-  );
+export const generateScale = memoize(
+  (rootNote: Note, scale: Scale) =>
+    normalizeNotes(
+      scaleFilter(scale.positions)(chromaticScaleWithRoot(rootNote))
+    ),
+  (rootNote: Note, scale: Scale) =>
+    JSON.stringify({
+      rootNote,
+      scale: scale.label
+    })
+);

@@ -7,6 +7,7 @@ import {FretBoard} from "components/FretBoard";
 import {Tuning} from "components/Tuning";
 import {scales, generateScale} from "utils/scales";
 import {Note} from "utils/notes";
+import {KeySlider} from "components/KeySlider";
 
 import "./App.css";
 
@@ -33,6 +34,7 @@ class App extends React.Component {
         <h1>Guitar Key Explorer</h1>
         <RootNoteDropdown value={rootNote} onChange={this.handleRootChange} />
         <ModeDropdown value={mode} onChange={this.handleModeChange} />
+        <KeySlider value={rootNote} onChange={this.handleRootChange} />
         <DisplayContainer>
           <Tuning tuning={tuning} onChange={this.handleTuningChange} />
           <FretBoard tuning={tuning} scale={scale} />
