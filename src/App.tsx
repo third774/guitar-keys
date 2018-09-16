@@ -1,5 +1,4 @@
 import * as React from "react";
-import styled from "styled-components";
 
 import {ModeDropdown} from "components/ModeDropdown";
 import {FretBoard} from "components/FretBoard";
@@ -9,10 +8,7 @@ import {Note} from "utils/notes";
 import {KeySlider} from "components/KeySlider";
 
 import "./App.css";
-
-const DisplayContainer = styled.div`
-  display: flex;
-`;
+import {Flex} from "components/Flex";
 
 class App extends React.Component {
   state = {
@@ -31,12 +27,14 @@ class App extends React.Component {
     return (
       <div className="App">
         <h1>Guitar Key Explorer</h1>
-        <ModeDropdown value={mode} onChange={this.handleModeChange} />
-        <KeySlider value={rootNote} onChange={this.handleRootChange} />
-        <DisplayContainer>
+        <Flex>
+          <ModeDropdown value={mode} onChange={this.handleModeChange} />
+          <KeySlider value={rootNote} onChange={this.handleRootChange} />
+        </Flex>
+        <Flex>
           <Tuning tuning={tuning} onChange={this.handleTuningChange} />
           <FretBoard tuning={tuning} scale={scale} />
-        </DisplayContainer>
+        </Flex>
       </div>
     );
   }
