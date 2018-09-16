@@ -18,11 +18,12 @@ const Fret = styled.div<FretProps>`
     props.distanceFromRoot > 0 ? "center" : "flex-end"};
   align-items: center;
   flex-grow: ${props => (props.distanceFromRoot > 0 ? 1 : 0)};
-  flex-basis: 80px;
+  flex-basis: 40px;
   flex-shrink: 0;
   border: ${props => (props.distanceFromRoot > 0 ? "1px solid black" : "none")};
   border-right: ${props =>
     props.distanceFromRoot > 0 ? "1px solid black" : "8px solid black"};
+  padding: ${props => (props.distanceFromRoot > 0 ? "inherit" : "0 16px")};
 `;
 
 interface GuitarStringProps {

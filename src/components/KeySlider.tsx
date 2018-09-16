@@ -10,7 +10,7 @@ import "./KeySlider.css";
 
 const Container = styled.div`
   margin: 30px 0;
-  padding-left: 85px;
+  padding-left: 78px;
 `;
 
 const normalizedChromaticC = normalizeNotes(chromaticScaleWithRootC);
