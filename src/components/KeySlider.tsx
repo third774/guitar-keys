@@ -8,8 +8,9 @@ import {Note, chromaticScaleWithRootC, normalizeNotes} from "utils/notes";
 import "rc-slider/assets/index.css";
 import "./KeySlider.css";
 
-const StyledSlider = styled(Slider)`
+const Container = styled.div`
   margin: 30px 0;
+  padding-left: 85px;
 `;
 
 const normalizedChromaticC = normalizeNotes(chromaticScaleWithRootC);
@@ -42,11 +43,13 @@ const handle = (props: any) => {
 };
 
 export const KeySlider: React.SFC<KeySliderProps> = ({onChange, value}) => (
-  <StyledSlider
-    min={0}
-    max={11}
-    value={normalizedChromaticC.findIndex(n => Note[n.note] === value)}
-    onChange={changeHandler(onChange)}
-    handle={handle}
-  />
+  <Container>
+    <Slider
+      min={0}
+      max={11}
+      value={normalizedChromaticC.findIndex(n => Note[n.note] === value)}
+      onChange={changeHandler(onChange)}
+      handle={handle}
+    />
+  </Container>
 );

@@ -7,7 +7,19 @@ import {scales, generateScale} from "utils/scales";
 import {Note} from "utils/notes";
 import {KeySlider} from "components/KeySlider";
 
-import {Flex} from "components/Flex";
+import {Title} from "components/Title";
+import styled from "styled-components";
+
+const Container = styled.div`
+  max-width: 1200px;
+  margin: 0 auto;
+`;
+
+const Layout = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 12fr;
+  grid-template-rows: 1fr 5fr;
+`;
 
 class App extends React.Component {
   state = {
@@ -24,17 +36,15 @@ class App extends React.Component {
     const {rootNote, mode, tuning} = this.state;
     const scale = generateScale(Note[rootNote], scales[mode]);
     return (
-      <div>
-        <h1>Guitar Key Explorer</h1>
-        <Flex>
+      <Container>
+        <Title>Guitar Key Map</Title>
+        <Layout>
           <ModeDropdown value={mode} onChange={this.handleModeChange} />
           <KeySlider value={rootNote} onChange={this.handleRootChange} />
-        </Flex>
-        <Flex>
           <Tuning tuning={tuning} onChange={this.handleTuningChange} />
           <FretBoard tuning={tuning} scale={scale} />
-        </Flex>
-      </div>
+        </Layout>
+      </Container>
     );
   }
 }
