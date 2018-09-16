@@ -7,7 +7,6 @@ import {scales, generateScale} from "utils/scales";
 import {Note} from "utils/notes";
 import {KeySlider} from "components/KeySlider";
 
-import "./App.css";
 import {Flex} from "components/Flex";
 
 class App extends React.Component {
@@ -25,7 +24,7 @@ class App extends React.Component {
     const {rootNote, mode, tuning} = this.state;
     const scale = generateScale(Note[rootNote], scales[mode]);
     return (
-      <div className="App">
+      <div>
         <h1>Guitar Key Explorer</h1>
         <Flex>
           <ModeDropdown value={mode} onChange={this.handleModeChange} />

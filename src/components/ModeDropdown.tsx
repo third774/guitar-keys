@@ -10,7 +10,7 @@ interface ModeDropdownProps {
 }
 
 const Label = styled.label`
-  display: inline-block;
+  /* display: inline-block; */
 `;
 
 const onChangeHandler = (onChange: ChangeHandler) => (
