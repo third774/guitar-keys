@@ -4,3 +4,15 @@
   margin-left: -12px;
   margin-top: -9px;
 }
+
+.rc-slider-tooltip-content .rc-slider-tooltip-arrow {
+  border-top-color: crimson;
+}
+
+.rc-slider-tooltip-inner {
+  background-color: crimson;
+}
+
+.rc-slider-track {
+  background-color: #777;
+}

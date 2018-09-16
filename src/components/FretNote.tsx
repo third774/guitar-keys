@@ -8,7 +8,7 @@ export const FretNote = styled.span<FretNoteProps>`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: ${props => (props.isRoot ? "crimson" : "black")};
+  background-color: ${props => (props.isRoot ? "crimson" : "#333")};
   color: white;
   border-radius: 50%;
   margin: 16px 0;

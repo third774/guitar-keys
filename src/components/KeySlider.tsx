@@ -2,10 +2,10 @@ import * as React from "react";
 import styled from "styled-components";
 import Slider, {Handle} from "rc-slider";
 import Tooltip from "rc-tooltip";
+import "rc-slider/assets/index.css";
 
 import {Note, chromaticScaleWithRootC, normalizeNotes} from "utils/notes";
 
-import "rc-slider/assets/index.css";
 import "./KeySlider.css";
 
 const Container = styled.div`

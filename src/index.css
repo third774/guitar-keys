@@ -2,4 +2,6 @@ body {
   margin: 0;
   padding: 0;
   font-family: Helvetica;
+  background-color: aliceblue;
+  color: #333;
 }
