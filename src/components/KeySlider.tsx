@@ -1,9 +1,12 @@
 import * as React from "react";
 import styled from "styled-components";
-import Slider from "rc-slider";
-import "rc-slider/assets/index.css";
+import Slider, {Handle} from "rc-slider";
+import Tooltip from "rc-tooltip";
 
 import {Note, chromaticScaleWithRootC, normalizeNotes} from "utils/notes";
+
+import "rc-slider/assets/index.css";
+import "./KeySlider.css";
 
 const StyledSlider = styled(Slider)`
   margin: 30px 0;
@@ -23,11 +26,27 @@ interface KeySliderProps {
   value: string;
 }
 
+const handle = (props: any) => {
+  const {value, dragging, index, ...restProps} = props;
+  return (
+    <Tooltip
+      prefixCls="rc-slider-tooltip"
+      overlay={normalizedChromaticC[value].label}
+      visible={true}
+      placement="top"
+      key={index}
+    >
+      <Handle value={value} {...restProps} />
+    </Tooltip>
+  );
+};
+
 export const KeySlider: React.SFC<KeySliderProps> = ({onChange, value}) => (
   <StyledSlider
     min={0}
     max={11}
     value={normalizedChromaticC.findIndex(n => Note[n.note] === value)}
     onChange={changeHandler(onChange)}
+    handle={handle}
   />
 );

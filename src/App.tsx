@@ -1,7 +1,6 @@
 import * as React from "react";
 import styled from "styled-components";
 
-import {RootNoteDropdown} from "components/RootNoteDropdown";
 import {ModeDropdown} from "components/ModeDropdown";
 import {FretBoard} from "components/FretBoard";
 import {Tuning} from "components/Tuning";
@@ -32,7 +31,6 @@ class App extends React.Component {
     return (
       <div className="App">
         <h1>Guitar Key Explorer</h1>
-        <RootNoteDropdown value={rootNote} onChange={this.handleRootChange} />
         <ModeDropdown value={mode} onChange={this.handleModeChange} />
         <KeySlider value={rootNote} onChange={this.handleRootChange} />
         <DisplayContainer>
