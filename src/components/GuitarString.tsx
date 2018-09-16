@@ -39,7 +39,9 @@ export const GuitarString: React.SFC<GuitarStringProps> = ({
       {shiftToBack(notes.findIndex(n => n.note === rootNote), notes).map(
         (n, i) => (
           <Fret key={n.note} distanceFromRoot={i}>
-            {n.inKey && <FretNote inKey={n.inKey}>{n.label}</FretNote>}
+            {n.inKey && (
+              <FretNote isRoot={n.distanceFromRoot === 0}>{n.label}</FretNote>
+            )}
           </Fret>
         )
       )}
