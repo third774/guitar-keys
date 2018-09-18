@@ -18,7 +18,7 @@ const Container = styled.div`
 const Layout = styled.div`
   display: grid;
   grid-template-columns: 1fr 12fr;
-  grid-template-rows: 1fr 5fr;
+  grid-template-rows: 1fr 4fr;
 `;
 
 class App extends React.Component {

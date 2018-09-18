@@ -11,8 +11,8 @@ export const FretNote = styled.span<FretNoteProps>`
   background-color: ${props => (props.isRoot ? "crimson" : "#333")};
   color: white;
   border-radius: 50%;
-  margin: 16px 0;
-  height: 32px;
-  width: 32px;
-  font-size: 14px;
+  margin: 12px 0;
+  height: 28px;
+  width: 28px;
+  font-size: 12px;
 `;
