@@ -1,7 +1,14 @@
 import React, {ChangeEvent} from "react";
 import {scales, Scale} from "utils/scales";
+import styled from "styled-components";
 
 type ChangeHandler = (newValue: string) => void;
+
+const Label = styled.label`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+`;
 
 interface ModeDropdownProps {
   value: string;
@@ -16,8 +23,8 @@ export const ModeDropdown: React.SFC<ModeDropdownProps> = ({
   value,
   onChange
 }) => (
-  <label>
-    Mode:&nbsp;
+  <Label>
+    Mode:
     <select value={value} onChange={onChangeHandler(onChange)}>
       {Object.keys(scales).map(key => {
         const scale: Scale = scales[key];
@@ -28,5 +35,5 @@ export const ModeDropdown: React.SFC<ModeDropdownProps> = ({
         );
       })}
     </select>
-  </label>
+  </Label>
 );

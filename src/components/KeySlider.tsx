@@ -9,8 +9,13 @@ import {Note, chromaticScaleWithRootC, normalizeNotes} from "utils/notes";
 import "./KeySlider.css";
 
 const Container = styled.div`
-  margin: 30px 0;
-  padding-left: 78px;
+  display: flex;
+  align-items: center;
+`;
+
+const Label = styled.label`
+  flex: none;
+  margin: 0 20px;
 `;
 
 const normalizedChromaticC = normalizeNotes(chromaticScaleWithRootC);
@@ -44,6 +49,7 @@ const handle = (props: any) => {
 
 export const KeySlider: React.SFC<KeySliderProps> = ({onChange, value}) => (
   <Container>
+    <Label>Root:</Label>
     <Slider
       min={0}
       max={11}
