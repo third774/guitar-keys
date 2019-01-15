@@ -6,3 +6,12 @@ body {
   background-color: aliceblue;
   color: #333;
 }
+
+/* Smartphones (portrait) ----------- */
+@media only screen and (max-width: 768px) {
+  /* Styles */
+  .github-corner svg {
+    transform: scale(0.6);
+    transform-origin: top right;
+  }
+}
