@@ -9,6 +9,8 @@ import {KeySlider} from "components/KeySlider";
 
 import {Title} from "components/Title";
 import styled from "styled-components";
+import {InstrumentType, instruments} from "utils/Instrument";
+import {InstrumentDropdown} from "components/InstrumentDropdown";
 
 const Container = styled.div`
   max-width: 1200px;
@@ -23,6 +25,7 @@ const Layout = styled.div`
 
 class App extends React.Component {
   state = {
+    instrumentType: InstrumentType.guitar,
     rootNote: "C",
     mode: "major",
     tuning: [Note.E, Note.B, Note.G, Note.D, Note.A, Note.E]
@@ -31,6 +34,15 @@ class App extends React.Component {
   handleRootChange = (rootNote: string) => this.setState({rootNote});
   handleModeChange = (mode: string) => this.setState({mode});
   handleTuningChange = (tuning: Note[]) => this.setState({tuning});
+  handleInstrumentChange = (instrumentType: InstrumentType) => {
+    const instrument = instruments.find(i => i.type === instrumentType);
+    if (instrument) {
+      this.setState({
+        instrumentType,
+        tuning: instrument.stringConfiguration
+      });
+    }
+  };
 
   public render() {
     const {rootNote, mode, tuning} = this.state;
@@ -38,6 +50,7 @@ class App extends React.Component {
     return (
       <Container>
         <Title>Guitar Key Map</Title>
+        <InstrumentDropdown onChange={this.handleInstrumentChange} />
         <Layout>
           <ModeDropdown value={mode} onChange={this.handleModeChange} />
           <KeySlider value={rootNote} onChange={this.handleRootChange} />

@@ -1,14 +1,8 @@
 import React, {ChangeEvent} from "react";
-import {scales, Scale} from "utils/scales";
-import styled from "styled-components";
+import {Scale, scales} from "utils/scales";
+import {Label} from "./Label";
 
 type ChangeHandler = (newValue: string) => void;
-
-const Label = styled.label`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-`;
 
 interface ModeDropdownProps {
   value: string;
